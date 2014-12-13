@@ -9,8 +9,7 @@ Online services realeased are orgnized as follow:
 * [IMieiDati](https://github.com/ComuneBologna/servizi-online/tree/master/IMieiDati)
 * [IntornoAMe](https://github.com/ComuneBologna/servizi-online/tree/master/IntornoAMe)
 * [PortletCMS](https://github.com/ComuneBologna/servizi-online/tree/master/PortletCMS)
-* [Liferay IDE](https://github.com/liferay/liferay-ide)
-* [Maven Support](https://github.com/liferay/liferay-maven-support)
+
 
 ## Contributing, support and documentation
 
