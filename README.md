@@ -1,7 +1,7 @@
 # servizi-online
 
 [servizi-online](https://servizi.comune.bologna.it/fascicolo/web/fascicolo/home) 
-is the new e-gov city website of Bologna to communicate and interact with city employees and use public online services via the Internet with graphical user interfaces responsive and designed with a "mobile first" approach. 
+is the new e-gov city website of Bologna to communicate and interact with city employees and offer public online services via the Internet with graphical user interfaces responsive and designed with a "mobile first" approach. 
 
 Online services realeased are orgnized as follow:
 
@@ -13,7 +13,7 @@ Online services realeased are orgnized as follow:
 
 ## Contributing, support and documentation
 
-Comune di Bologna welcomes any and all contributions! 
+Comune di Bologna welcomes any and all contributions!
 Please refer to: 
 opensource@comune.bologna.it
 
