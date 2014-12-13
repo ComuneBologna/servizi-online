@@ -1,0 +1,141 @@
+<div class="main-container container" role="main">
+	<div class="col-sm-4 sidebar hidden-xs">
+	   <div class="portlet-dropzone portlet-column-content">
+	      <div class="portlet-boundary col-xs-12">
+	         <div class="portlet-body">
+	            <div class="panel">
+	               <section class="portlet" id="accordion-1">
+	                  <div class="panel-heading">
+	                     <h2 class="panel-title portlet-title panel-title-small">
+	                        Tipologia eventi
+	                     </h2>
+	                  </div>
+	                  <!-- /panel-heading -->
+	                  <div class="panel-body categories">
+	                     <div class="portlet-content-container">
+	                        <div class="portlet-body">
+	                           <form method="post" action="#">
+	                              <ul>
+	                              	 ## Print each category in the list of categories
+	                                 #foreach( $categoria in $listCategoria )
+	                                 <li class="col-xs-12">
+	                                 	## Se deve stampare una categoria preferita verifica anche che l'utente sia loggato
+										#if ( $categoria.getFlagPreferito()=="S" )
+											#if	( $personaCobo )											                                 
+			                                 	## If the category has an associated hex colore style the element with that colour
+			                                 	#if ($categoria.getHexcolore())
+													<div class="checkbox"><input type="checkbox" name="categoria-$categoria.getIdagendacategoria()" value="" id="categoria-$categoria.getIdagendacategoria()" checked="checked" /><label for="categoria-$categoria.getIdagendacategoria()" class="categoria-$categoria.getIdagendacategoria()" style="border-left-color:$categoria.getHexcolore() !important">$categoria.getNome()</label></div>
+												#else
+													<div class="checkbox"><input type="checkbox" name="categoria-$categoria.getIdagendacategoria()" value="" id="categoria-$categoria.getIdagendacategoria()" checked="checked" /><label for="categoria-$categoria.getIdagendacategoria()" class="categoria-$categoria.getIdagendacategoria()">$categoria.getNome()</label></div>
+												#end
+											#end
+										#else
+		                                 	## If the category has an associated hex colore style the element with that colour
+		                                 	#if ($categoria.getHexcolore())
+												<div class="checkbox"><input type="checkbox" name="categoria-$categoria.getIdagendacategoria()" value="" id="categoria-$categoria.getIdagendacategoria()" checked="checked" /><label for="categoria-$categoria.getIdagendacategoria()" class="categoria-$categoria.getIdagendacategoria()" style="border-left-color:$categoria.getHexcolore() !important">$categoria.getNome()</label></div>
+											#else
+												<div class="checkbox"><input type="checkbox" name="categoria-$categoria.getIdagendacategoria()" value="" id="categoria-$categoria.getIdagendacategoria()" checked="checked" /><label for="categoria-$categoria.getIdagendacategoria()" class="categoria-$categoria.getIdagendacategoria()">$categoria.getNome()</label></div>
+											#end
+										#end	                                    
+	                                 </li>
+	                                 #end
+	                              </ul>
+	                           </form>
+	                        </div>
+	                        <!-- /portlet-body -->
+	                     </div>
+	                  </div>
+	               </section>
+	               <!-- /portlet -->
+	            </div>
+	            <!-- panel -->
+	         </div>
+	         <!-- /portlet-body -->
+	      </div>
+	      <!-- /portlet-boundary -->
+	   </div>
+	   <!-- /portlet-dropzone -->
+	</div>
+	<div class="col-xs-12 col-sm-8 main-content">
+	   <div class="portlet-dropzone portlet-column-content">
+	      <div class="portlet-boundary col-xs-12">
+	         <div class="portlet-body">
+	            <div class="panel">
+	               <section class="portlet">
+	                  <div class="panel-heading">
+	                     <h2 class="panel-title portlet-title">
+	                       	#if ($idAccount)
+								La mia agenda
+						   	#else
+								Agenda
+							#end	
+	                     </h2>
+	                  </div>
+	                  <!-- /panel-heading -->
+	                  <div class="panel-body">
+	                        <div class="portlet-body">
+	                           <p>Tutte le scadenze e le date importanti in un unico calendario per aiutarti a programmare le tue attivit&agrave;.</p>
+	                        </div>
+	                        <!-- /portlet-body -->
+		                  <!-- Nav tabs -->
+		                  <div class="tab-header">
+		                     <h3 class="tab-label">Visualizza come:	</h3>
+		                     <ul class="nav nav-tabs" role="tablist">
+		                        <li class="active"><a href="#tab-calendario" role="tab" data-toggle="tab" class="btn"><i class="fa fa-calendar"></i> Calendario</a></li>
+		                        <li class=""><a href="#tab-elenco" role="tab" data-toggle="tab" class="btn"><i class="fa fa-list-ul"></i> Elenco</a></li>
+		                     </ul>
+		                  </div>
+	                  <div class="tab-content">
+	                     <div class="tab-pane active" id="tab-calendario">
+	                        <div class="panel-body agenda-panel">
+	                           <div class="portlet-content-container">
+	                              <div class="portlet-body">
+	                                 <div id="calendar"></div>
+	                                 <div class="button-container-right">
+	                                    <a href="#" class="btn btn-secondary" title="Scarica il calendario in formato iCalendar" tabindex="0"><i class="fa fa-download"></i> Scarica in formato iCalendar</a>
+	                                 </div>
+	                              </div>
+	                              <!-- /portlet-body -->
+	                           </div>
+	                           <!-- /portlet-content-container -->
+	                        </div>
+	                        <!-- /panel-body -->
+	                     </div>
+	                     <!-- /tab-pane -->
+	                     <div class="tab-pane" id="tab-elenco">
+	                        <div class="agenda-panel">
+	                           <div class="portlet-content-container">
+	                              <div class="portlet-body">
+	                              	 $listEvents
+	                                 <div class="end call-to-action">
+										<a class="button" title="Mostra pi&#xFA; contenuti">Mostra pi&#xFA; contenuti</a>
+									 </div>
+ 	                                 <div class="button-container-right">
+	                                    <a href="#" class="btn btn-secondary" title="Scarica il calendario in formato iCalendar" tabindex="0"><i class="fa fa-download"></i> Scarica in formato iCalendar</a>
+	                                 </div>
+	                              </div>
+	                              <!-- /portlet-body -->
+	                           </div>
+	                           <!-- /portlet-content-container -->
+	                        </div>
+	                        <!-- /panel-body -->
+	                     </div>
+	                     <!-- /tab-pane -->
+	                  </div>
+	                  <!-- /tab-content -->		                  
+	                  </div>
+	                  <!-- /panel-body -->
+
+
+	               </section>
+	               <!-- /portlet -->
+	            </div>
+	            <!-- panel -->
+	         </div>
+	         <!-- /portlet-body -->
+	      </div>
+	      <!-- /portlet-boundary -->
+	   </div>
+	   <!-- /portlet-dropzone -->
+	</div>
+</div>

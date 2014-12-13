@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.1.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_6_1_0.dtd">
+<liferay-portlet-app>
+
+	<portlet>
+		<portlet-name>I_Miei_Dati_Portlet</portlet-name>
+		<instanceable>false</instanceable>
+ 		<private-session-attributes>false</private-session-attributes>
+		<!-- js import -->
+		<footer-portlet-javascript>/js/jquery.corner.js?v=1.0</footer-portlet-javascript>  <!-- IE corner compatibility JS -->
+		<footer-portlet-javascript>/js/accordion.js?v=1.0</footer-portlet-javascript>  <!-- Accordion JS -->
+	</portlet>
+
+<!-- 	<portlet>
+		<portlet-name>I_Miei_Dati_Portlet_Gestione</portlet-name>
+		<instanceable>false</instanceable>
+
+		css import
+		<header-portlet-css>/css/jquery.dataTables.css</header-portlet-css>
+		<header-portlet-css>/css/jquery-ui.min.css</header-portlet-css>
+		<header-portlet-css>/css/tab.css</header-portlet-css>
+
+		js import
+		<footer-portlet-javascript>/js/jquery-ui.min.js</footer-portlet-javascript> JQuery JS
+		<footer-portlet-javascript>/js/jquery.dataTables.min.js</footer-portlet-javascript> JQuery DatTable JS
+		<footer-portlet-javascript>/js/jquery.jeditable.mini.js</footer-portlet-javascript>  JEDITABLE JS
+		<footer-portlet-javascript>/js/tab.js</footer-portlet-javascript> TAB JS
+
+	</portlet> -->
+	
+	<portlet>
+		<portlet-name>I_Miei_Dati_Caching_Portlet</portlet-name>
+		<instanceable>false</instanceable>
+ 		<private-session-attributes>false</private-session-attributes>		
+ 		<footer-portlet-javascript>/js/precache.js?v=1.0</footer-portlet-javascript>		
+	</portlet>
+</liferay-portlet-app>

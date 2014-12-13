@@ -1,0 +1,43 @@
+
+    <div class="panel-group collapse-second" id="accordion-contrassegni">
+
+#if ("$!fault" != "")
+	<fieldset class="fieldset-dati alert alert-danger">
+	  <legend><br>$errore_caricamento_servizio	</br></legend>
+	  <div>$errore_codice : <b>$fault.code</b></div>
+	  <div>$errore_descrizione : <b>$fault.description</b></div>
+	</fieldset>
+#{else}
+	#foreach( $contrassegno in $contrassegniList )
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+		        <h4 class="panel-title">
+		            <a data-toggle="collapse" data-parent="#accordion-contrassegni" href="#accordion-contrassegni-$contrassegno.index" class="collapsed">
+			            $ztl_contrassegno $contrassegno.numero
+			            <small><em>$ztl_titolare:</em> $contrassegno.nome</small>
+			            <span class="glyphicon glyphicon-chevron-down"></span>
+			            <span class="glyphicon glyphicon-chevron-up"></span>
+			        </a>
+			    </h4>
+		    </div>
+		    <div id="accordion-contrassegni-$contrassegno.index" class="panel-collapse collapse">
+	       	    <div class="panel-body">
+			        <!-- contrassegno -->
+			        <p><strong>$ztl_valido_1 $contrassegno.periodo_validita</strong></p>
+			        #if( "$!contrassegno.data_rinnovo" != "" )
+			        <p>$ztl_rinnovo_1 $contrassegno.data_rinnovo $ztl_rinnovo_2.</p>
+			        #end
+			        <p>$ztl_veicoli_associati:</p>
+	                <dl style="margin-bottom: 15px;"class="dl-secondary">
+	                    #foreach( $veicolo in $contrassegno.veicoliList )
+		                <dt>$veicolo.targa</dt>
+		                <dd>$veicolo.tipo, $ztl_valido_2 $veicolo.periodo_validita</dd>
+		                #end
+	                </dl>
+		        </div>
+		    </div>
+	    </div>
+	#end
+#end
+
+    </div>

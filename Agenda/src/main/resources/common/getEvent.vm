@@ -1,0 +1,51 @@
+<div class="header-meta">
+   <span class="giorno">$strFullFormat</span>
+   <span class="ora">Ore $strTimeOfDay</span>
+   <span class="categoria amministrazione">$categoria</span>
+</div>
+<div class="header">
+   <h2>$titolo</h2>
+</div>
+<div class="meta">
+   <dl class="actions">
+      <dt class="visuallyhidden">Azioni:</dt>
+      <dd class="preferiti aggiungi">
+         <a href="#" tabindex="0" title="Salva l'articolo tra i preferiti">
+         Aggiungi<span class="visuallyhidden"> l'articolo [titolo]</span>ai preferiti"
+         </a>
+      </dd>
+      <dd class="preferiti rimuovi">
+         <a href="#" tabindex="0" title="Salva l'articolo tra i preferiti">
+         Rimuovi<span class="visuallyhidden"> l'articolo [titolo]</span>ai preferiti"
+         </a>
+      </dd>
+   </dl>
+   <div class="actions">
+      <span class="condividi-addthis">Fallo sapere ai tuoi amici:</span>
+      <div id="myDiv">
+         <div	class="addthis_toolbox addthis_default_style addthis_32x32_style">
+            <a class="addthis_button_facebook at300b" title="Facebook" href="#">
+            <span class=" at300bs at15nc at15t_facebook">
+            <span class="at_a11y">Share on Facebook</span>
+            </span>
+            </a>
+            <a class="addthis_button_twitter at300b" title="Tweet" href="#">
+            <span class=" at300bs at15nc at15t_twitter">
+            <span class="at_a11y">Share on twitter</span>
+            </span>
+            </a>
+            <a class="addthis_button_compact at300b" title="Tweet" href="#">
+            <span class=" at300bs at15nc at15t_compact">
+            <span class="at_a11y">More Sharing Services</span>
+            </span>
+            </a>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="content">
+   <p>$descrizione</p>
+</div>
+<div class="footer">
+   <a class="button btn-secondary" title="Scarica in formato iCalendar">Scarica in formato iCalendar</a>
+</div>

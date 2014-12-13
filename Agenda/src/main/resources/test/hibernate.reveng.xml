@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-name="FCE_AGENDA" match-schema="ELI4U"></table-filter>
+	<table-filter match-name="FCE_AGENDA_CATEGORIA"
+		match-schema="ELI4U"></table-filter>
+	<table-filter match-name="FCE_AGENDA_SORGENTI"
+		match-schema="ELI4U">
+	</table-filter>
+	<table-filter match-name="FCE_INTORNOAME_CATEGORIA"
+		match-schema="ELI4U">
+	</table-filter>
+	<table-filter match-name="FCE_INTORNOAME_KML"
+		match-schema="ELI4U">
+	</table-filter>
+	<table-filter match-name="FCE_INTORNOAME_KML_CAT"
+		match-schema="ELI4U">
+	</table-filter>
+	<table-filter match-name="FCE_INTORNOAME_KML_UTENTE"
+		match-schema="ELI4U">
+	</table-filter>
+	<table-filter match-name="FCE_TIPO_ACCOUNT" match-schema="ELI4U"></table-filter>
+	<table-filter match-name="FCE_UTENTE" match-schema="ELI4U"></table-filter>
+</hibernate-reverse-engineering>

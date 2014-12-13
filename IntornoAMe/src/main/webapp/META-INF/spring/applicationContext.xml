@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd  
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd   
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd   
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+	">
+	
+	<util:properties id="portlet" location="classpath:portlet.properties" /> <!-- Caricamento properties da file. -->
+	<context:component-scan base-package="it.eng.fascicolo.intornoame" /> <!-- richiesto da GWTP-spring integration -->
+	<context:annotation-config />
+	<cache:annotation-driven/>
+	
+	<!-- EHCACHE -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehcache" />
+	</bean>
+	<bean id="ehcache"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml" />
+		<property name="shared" value="false" />
+	</bean>
+	<bean id="intornoAMeCaching" class="it.eng.fascicolo.intornoame.portlet.cache.impl.IntornoAMeCacheCoboImpl" />
+	
+	<!-- CONFIGURAZIONI DIPENDENTI DALL'ESECUZIONE IN CONTAINER. -->
+	<beans profile="mock">
+	</beans>
+
+	<beans profile="container">
+		<bean id="springApplicationContext"
+			class="it.eng.fascicolo.intornoame.spring.SpringApplicationContext" />
+		<!-- configurazioni DB containerBased -->
+		<jee:jndi-lookup id="eli4uDataSource" jndi-name="jdbc/Eli4u"
+			expected-type="javax.sql.DataSource" />
+		<bean id="emf"
+			class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+			<property name="dataSource" ref="eli4uDataSource" />
+			<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+			<property name="packagesToScan" value="it.eng.fascicolo.commons.jpa.model" />
+		</bean>
+		<bean id="jpaVendorAdapter"
+			class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+			<property name="database" value="ORACLE" />
+			<property name="showSql" value="false" />
+			<property name="generateDdl" value="false" />
+			<property name="databasePlatform" value="org.hibernate.dialect.Oracle10gDialect" />
+		</bean>
+		<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+			<property name="entityManagerFactory" ref="emf" />
+		</bean>
+
+		<tx:annotation-driven />
+		<!-- DAO's -->
+		<bean id="kmlDAO" class="it.eng.fascicolo.intornoame.dao.jpa.KmlDAOImpl" />
+		<bean id="categoriaDAO" class="it.eng.fascicolo.intornoame.dao.jpa.CategoriaDAOImpl" />
+		<bean id="kmlCategoriaDAO"
+			class="it.eng.fascicolo.intornoame.dao.jpa.KmlCategoriaDAOImpl" />
+
+		<!-- Servizi Spring -->
+		<bean id="intornoAMeService"
+			class="it.eng.fascicolo.intornoame.service.IntornoAMeServiceImpl" />
+		<bean id="portalService"
+			class="it.eng.fascicolo.intornoame.service.LiferayPortalService" >
+		</bean>
+	</beans>
+
+</beans>

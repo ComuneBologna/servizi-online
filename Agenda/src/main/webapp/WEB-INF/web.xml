@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" 
+	xmlns:web="http://java.sun.com/xml/ns/javaee" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+	version="2.5">
+  <display-name>agenda</display-name>
+  
+  <context-param>
+    <param-name>spring.profiles.active</param-name>
+    <param-value>@springprofile@</param-value>
+  </context-param>
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/META-INF/spring/applicationContext.xml</param-value>
+  </context-param>
+  
+  <jsp-config>
+    <taglib>
+      <taglib-uri>http://java.sun.com/portlet_2_0</taglib-uri>
+      <taglib-location>/WEB-INF/tld/liferay-portlet.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>http://liferay.com/tld/aui</taglib-uri>
+      <taglib-location>/WEB-INF/tld/aui.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+  
+  <servlet>
+    <servlet-name>dispatch</servlet-name>
+    <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AgendaServlet</servlet-name>
+    <servlet-class>it.eng.fascicolo.agenda.servlet.AgendaServlet</servlet-class>
+  </servlet>  
+  
+  <servlet-mapping>
+    <servlet-name>dispatch</servlet-name>
+    <url-pattern>/dispatch/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>AgendaServlet</servlet-name>
+    <url-pattern>/AgendaServlet/*</url-pattern>
+  </servlet-mapping>
+  
+  <session-config>
+    <session-timeout>10</session-timeout>
+  </session-config>
+  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+</web-app>

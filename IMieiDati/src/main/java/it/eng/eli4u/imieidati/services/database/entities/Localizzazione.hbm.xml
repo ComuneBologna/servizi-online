@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 31-lug-2014 11.28.28 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="it.eng.eli4u.imieidati.services.database.entities.Localizzazione" table="localizzazione">
+        <id name="idLocalizz" type="double">
+            <column name="ID_LOCALIZZ" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="chiave" type="string">
+            <column name="CHIAVE" length="100" not-null="true" />
+        </property>
+        <property name="locale" type="string">
+            <column name="LOCALE" length="10" not-null="true" />
+        </property>
+        <property name="valore" type="string">
+            <column name="VALORE" length="1024" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

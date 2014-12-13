@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.1.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_6_1_0.dtd">
+
+<liferay-portlet-app>
+	<portlet>
+		<portlet-name>PortletCMSNewsFront</portlet-name>
+		<icon>/icon.png</icon>
+		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>	
+		<instanceable>true</instanceable>	
+	</portlet>
+	<portlet>
+		<portlet-name>PortletCMSNewsFull</portlet-name>
+		<icon>/icon.png</icon>	
+		<instanceable>false</instanceable>	
+	</portlet>
+	<portlet>
+		<portlet-name>PortletCMSServizi</portlet-name>
+		<icon>/icon.png</icon>	
+		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
+		<instanceable>true</instanceable>	
+	</portlet>	
+	<portlet>
+		<portlet-name>PortletCMSTiles</portlet-name>
+		<icon>/icon.png</icon>	
+		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
+		<instanceable>true</instanceable>
+		<private-session-attributes>false</private-session-attributes>	
+		<!-- <footer-portlet-javascript>/js/tile_same_height.js?v=1.0</footer-portlet-javascript> -->
+	</portlet>	
+	<portlet>
+		<portlet-name>PortletCMSBenvenuto</portlet-name>
+		<icon>/icon.png</icon>	
+		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
+		<instanceable>false</instanceable>
+		<private-session-attributes>false</private-session-attributes>	
+	</portlet>
+	<portlet>
+		<portlet-name>PortletCMSTilesIMieiDati</portlet-name>
+		<icon>/icon.png</icon>	
+		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
+		<instanceable>false</instanceable>
+		<private-session-attributes>false</private-session-attributes>	
+	</portlet>	
+	<role-mapper>
+		<role-name>administrator</role-name>
+		<role-link>Administrator</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>guest</role-name>
+		<role-link>Guest</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>power-user</role-name>
+		<role-link>Power User</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>user</role-name>
+		<role-link>User</role-link>
+	</role-mapper>
+</liferay-portlet-app>

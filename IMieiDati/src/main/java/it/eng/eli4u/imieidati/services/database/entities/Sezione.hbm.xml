@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 31-lug-2014 11.28.28 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="it.eng.eli4u.imieidati.services.database.entities.Sezione" table="sezione">
+        <id name="id" type="double">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="codice" type="string">
+            <column name="CODICE" length="30" not-null="true" unique="true" />
+        </property>
+        <property name="titolo" type="string">
+            <column name="TITOLO" length="100" not-null="true" />
+        </property>
+        <property name="descrizione" type="string">
+            <column name="DESCRIZIONE" length="200" />
+        </property>
+        <property name="image" type="string">
+            <column name="IMAGE" length="200" />
+        </property>
+        <property name="uriXsl" type="string">
+            <column name="URI_XSL" length="200" />
+        </property>
+        <property name="uriXslMobile" type="string">
+            <column name="URI_XSL_MOBILE" length="200" />
+        </property>
+        <property name="datiXsl" type="string">
+            <column name="DATI_XSL" />
+        </property>
+        <property name="datiXslMobile" type="string">
+            <column name="DATI_XSL_MOBILE" />
+        </property>
+        <property name="htmlStatico" type="string">
+            <column name="HTML_STATICO" />
+        </property>
+        <property name="flgAbilitato" type="short">
+            <column name="FLG_ABILITATO" precision="3" scale="0" not-null="true" />
+        </property>
+        <property name="idServizio" type="string">
+            <column name="ID_SERVIZIO" length="200" />
+        </property>
+        <property name="urlServizio" type="string">
+            <column name="URL_SERVIZIO" length="200" />
+        </property>
+        <property name="nomeServizio" type="string">
+            <column name="NOME_SERVIZIO" length="200" />
+        </property>
+        <property name="usernameServizio" type="string">
+            <column name="USERNAME_SERVIZIO" length="100" />
+        </property>
+        <property name="passwordeServizio" type="string">
+            <column name="PASSWORDE_SERVIZIO" length="100" />
+        </property>
+        <property name="portletAbilitate" type="string">
+            <column name="PORTLET_ABILITATE" length="500" />
+        </property>
+        <property name="renderingClass" type="string">
+            <column name="RENDERING_CLASS" length="500" />
+        </property>
+        <set name="parametroServizios" table="parametro_servizio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="it.eng.eli4u.imieidati.services.database.entities.ParametroServizio" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,53 @@
+
+  <div class="panel-group collapse-second" id="accordion-redditi">
+
+#if ("$!fault" != "")
+	<fieldset class="fieldset-dati alert alert-danger">
+	  <legend><br>$errore_caricamento_servizio	</br></legend>
+	  <div>$errore_codice : <b>$fault.code</b></div>
+	  <div>$errore_descrizione : <b>$fault.description</b></div>
+	</fieldset>
+#{else}
+	#foreach( $reddito in $redditiList )
+		<div class="panel panel-default">
+			<div class="panel-heading">
+			    <h4 class="panel-title">
+			        <a data-toggle="collapse" data-parent="#accordion-redditi" href="#accordion-redditi-$reddito.index" class="collapsed">
+			            Dichiarazione anno $reddito.anno
+			            <span class="glyphicon glyphicon-chevron-down"></span>
+			            <span class="glyphicon glyphicon-chevron-up"></span>
+			        </a>
+			    </h4>
+			</div>
+			<div style="height: 0px;" id="accordion-redditi-$reddito.index" class="panel-collapse collapse">
+			    <div class="panel-body">
+			    
+	<div class="table-responsive">
+		<table summary="Dichiarazione dei redditi anno $reddito.anno" class="table table-hover">
+			<caption class="sr-only">Dichiarazione dei redditi anno $reddito.anno</caption>
+			<thead>
+				<tr>
+					<th scope="col" id="descrizione">Descrizione</th>
+					<th scope="col" id="importo">Importo</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach( $rigaReddito in $reddito.rigaRedditiList )
+					#if( "$!rigaReddito.descrizione" != "" )
+				<tr>
+					<td headers="descrizione">$rigaReddito.descrizione</td>
+					<td headers="importo">$rigaReddito.importo</td>
+				</tr>
+					#end
+				#end
+			</tbody>
+		</table>
+	</div>
+			    
+			    </div>
+			</div>
+		</div>
+	#end
+#end
+
+  </div>

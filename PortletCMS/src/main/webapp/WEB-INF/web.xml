@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>portletcms</display-name>
+  <context-param>
+    <param-name>maxUploadSize</param-name>
+    <param-value>3145728</param-value>
+  </context-param>
+  <context-param>
+    <param-name>spring.profiles.active</param-name>
+    <param-value>@springprofile@</param-value>
+  </context-param>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/META-INF/spring/applicationContext.xml</param-value>
+  </context-param>
+  <session-config>
+    <session-timeout>10</session-timeout>
+  </session-config>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+  
+  <jsp-config>
+    <taglib>
+      <taglib-uri>http://java.sun.com/portlet_2_0</taglib-uri>
+      <taglib-location>/WEB-INF/tld/liferay-portlet.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>http://liferay.com/tld/aui</taglib-uri>
+      <taglib-location>/WEB-INF/tld/aui.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+  <session-config>
+    <session-timeout>10</session-timeout>
+  </session-config>
+</web-app>

@@ -1,0 +1,14 @@
+.sectionListForm{
+background: lightgray;
+padding-bottom: 10px;
+padding-top: 5px;
+padding-left: 10px;
+}
+
+.checkboxLabel{
+position: relative;
+vertical-align: middle;
+bottom: 2px;
+left: 10px;
+font-size: 13px;
+}

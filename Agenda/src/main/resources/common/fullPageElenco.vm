@@ -1,0 +1,103 @@
+## Set whether this is the first load of the events
+#if ($fullDatePrev == "")
+	#set($firstTime = true)
+#end
+
+## If first time then set the surrounding ul element
+#if ($firstTime)
+	<ul class="eventi">
+#end
+	
+	## Print each event in the list of events
+	#foreach($event in $listEvents)
+		#set ($idAgenda = $event.getIdagenda())
+		#set ($categoriaId = $event.getFceAgendaCategoria().getIdagendacategoria())
+		#set ($titolo = $event.getTitolo())
+		#set ($dayNameInWeek = $dfDayNameInWeek.format($event.getDatainizio()))
+		#set ($dayNumberInMonth = $dfDayNumberInMonth.format($event.getDatainizio()))
+		#set ($strFullMonth = $dfFullMonth.format($event.getDatainizio()))
+		#set ($timeOfDay = $dfTimeOfDay.format($event.getDatainizio()))
+		#set ($endDate = $dfFulldate.format($event.getDatafine()))
+		#set ($fullDateCurrent = $dfFulldate.format($event.getDatainizio()))
+		#set ($descrizione = $event.getDescrizione())
+		
+		## If the date of the current event is different from the previous then print a new event row with date information
+		#if ($fullDateCurrent != $fullDatePrev)
+			## Close the previous li element if this is not the first event
+			#if ($fullDatePrev != "")
+				</li>
+			#end
+			
+			<li class="row evento categoria-$categoriaId">
+	 			<div class="evento-data col-xs-3 col-sm-2">
+	              <span class="evento-data-giorno">$dayNameInWeek</span>
+	              <span class="evento-data-numero">$dayNumberInMonth</span>
+	              <span class="evento-data-mese">$strFullMonth</span>
+	           	</div>
+	           	<div class="evento-dettaglio col-xs-9 col-sm-10" id="event-$event.getIdagenda()" style="float: right;">
+	              <div class="evento-giorno  categoria-$categoriaId">
+	              	## If the event category contains a hex colour then use that colour to style the element
+	              	#if ($event.getFceAgendaCategoria().getHexcolore())
+						<div class="evento-intestazione" style="border-left-color:$event.getFceAgendaCategoria().getHexcolore() !important">
+					#else
+						<div class="evento-intestazione">
+					#end	                 
+	                    <h3 class="evento-nome">$titolo</h3>
+	                    <div class="evento-tempo">
+	                    #if ( $personaCobo )
+	                    	#if ( $event.isPreferito() )
+	                    		#set ($classe = 'pref down')
+	                    	#else
+	                    		#set ($classe = 'pref')
+	                    	#end	
+						   <span class="prefLabel">Aggiungi ai Preferiti<a id="preferiti" title="preferiti" class="$classe"></a>
+							   <input id="idAgenda" type="hidden" value="$idAgenda" />
+						   </span>
+						#end
+	                       <span class="evento-tempo">Fino al: </span><span class="evento-fine">$endDate</span>
+	                    </div>
+	                 </div>
+	                 <div class="evento-contenuto">
+	                    <p>$descrizione</p>
+	                 </div>
+	              </div>
+	           </div>
+	    ## If the date of the current event is the same as the previous event then print a new event detail within a previous event row 
+		#else
+	 			<div class="evento-dettaglio col-xs-9 col-sm-10" id="event-$event.getIdagenda()" style="float: right;">
+	              <div class="evento-giorno  categoria-$categoriaId">
+	                 ## If the event category contains a hex colour then use that colour to style the element
+	                 #if ($event.getFceAgendaCategoria().getHexcolore())
+						<div class="evento-intestazione" style="border-left-color:$event.getFceAgendaCategoria().getHexcolore() !important">
+					 #else
+						<div class="evento-intestazione">
+					 #end
+	                    <h3 class="evento-nome">$titolo</h3>
+	                    <div class="evento-tempo">
+		                    #if ( $personaCobo )
+		                        #if ( $event.isPreferito() )
+	                    			#set ($classe = 'pref down')
+	                    		#else
+	                    			#set ($classe = 'pref')
+	                    		#end	
+		                       <span class="prefLabel">Aggiungi ai Preferiti<a id="preferiti" title="preferiti" class="$classe"></a>
+								   <input id="idAgenda" type="hidden" value="$idAgenda" />
+		                       </span>
+							#end
+	                       <span class="evento-tempo">Fino al: </span><span class="evento-fine">$endDate</span>
+	                    </div>
+	                 </div>
+	                 <div class="evento-contenuto">
+	                    <p>$descrizione</p>
+	                 </div>
+	              </div>
+	           </div>
+		#end
+	     
+		#set ($fullDatePrev = $fullDateCurrent)
+	#end
+
+## If first time then close the surrounding ul element
+#if ($firstTime)
+	</ul>
+#end

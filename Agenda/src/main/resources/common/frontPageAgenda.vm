@@ -1,0 +1,46 @@
+<div class="panel"> 
+	<div style="" class="row"> 
+		<div class="portlet-body agenda"> 
+			<div class="col-md-6">
+				<div class="panel-heading">
+					## Print title based on whether user is logged in or not
+					<h2 class="panel-title">
+					#if($idAccount)La mia agenda#else
+					Agenda
+					#end						
+					</h2>
+				</div> <!-- /panel-heading -->
+				
+				<div class="panel-body">
+					<div class="portlet-content-container">
+						<div class="portlet-body">
+							<ul class="lista-eventi">
+								##Print every event in the list of events
+								#foreach( $event in $listAgenda )
+										<li class="categoria-1">
+											<div class="time">
+												<span class="data">$dfDate.format($event.getDatainizio())</span>
+											</div>
+										<p><span class="evento">$event.getTitolo()</span></p>
+									</li>
+								#end
+							</ul>
+						</div> <!-- /portlet-body -->
+					</div> <!-- /portlet-content-container -->
+				</div> <!-- /panel-body -->
+				
+				<div class="panel-footer">
+					<div class="portlet-footer">
+						<a href="$fullPageUrl" title="" tabindex="0" class="btn btn-primary">Scopri di pi&#xF9;</a>
+					</div>
+				</div>	
+			</div>
+			
+			<div class="col-md-6">
+				<div class="panel-aside agenda">
+					<div id="calendar-small"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

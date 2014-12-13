@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.1.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_6_1_0.dtd">
+
+<liferay-portlet-app>
+	<portlet>
+		<portlet-name>AgendaFrontPage</portlet-name>
+		<icon>/icon.png</icon>
+		<instanceable>false</instanceable>
+		<private-session-attributes>false</private-session-attributes>
+		<footer-portlet-javascript>/js/moment.min.js?v=1.0</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/fullcalendar.min.js?v=1.0</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/it.js?v=1.0</footer-portlet-javascript>
+	</portlet>
+	<portlet>
+		<portlet-name>AgendaFull</portlet-name>
+		<icon>/icon.png</icon>
+		<instanceable>false</instanceable>
+		<private-session-attributes>false</private-session-attributes>	
+		<footer-portlet-javascript>/js/modernizr.js?v=1.0</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/moment.min.js?v=1.0</footer-portlet-javascript>		
+		<footer-portlet-javascript>/js/fullcalendar.min.js?v=1.0</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/it.js?v=1.0</footer-portlet-javascript>
+	</portlet>
+	<role-mapper>
+		<role-name>administrator</role-name>
+		<role-link>Administrator</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>guest</role-name>
+		<role-link>Guest</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>power-user</role-name>
+		<role-link>Power User</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>user</role-name>
+		<role-link>User</role-link>
+	</role-mapper>
+</liferay-portlet-app>

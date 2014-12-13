@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop 
+	  http://www.springframework.org/schema/aop/spring-aop-3.1.xsd   
+	  http://www.springframework.org/schema/beans 
+	  http://www.springframework.org/schema/beans/spring-beans-3.1.xsd   
+	  http://www.springframework.org/schema/context 
+	  http://www.springframework.org/schema/context/spring-context-3.1.xsd   
+	  http://www.springframework.org/schema/jee 
+	  http://www.springframework.org/schema/jee/spring-jee-3.1.xsd   
+	  http://www.springframework.org/schema/tx 
+	  http://www.springframework.org/schema/tx/spring-tx-3.1.xsd 
+	  http://www.springframework.org/schema/util 
+	  http://www.springframework.org/schema/util/spring-util-3.1.xsd
+	  http://www.springframework.org/schema/cache 
+	  http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+
+
+	<util:properties id="portlet" location="classpath:portlet.properties" /> <!-- Caricamento properties da file. -->
+	<!-- <context:component-scan base-package="com.gwtplatform.dispatch.server.spring" 
+		/> --><!-- richiesto da GWTP-spring integration -->
+	<context:component-scan base-package="it.eng.fascicolo.agenda" />
+	<context:annotation-config />
+	<cache:annotation-driven />
+
+
+	<!-- CONFIGURAZIONE DEL LOGGING -->
+	<!-- <bean id="logger" class="com.gwtplatform.dispatch.server.spring.LoggerFactoryBean"> 
+		<constructor-arg> <bean class="java.util.logging.Logger" factory-method="getAnonymousLogger"> 
+		<property name="level"> <value>FINEST</value> </property> </bean> </constructor-arg> 
+		</bean> -->
+	<bean id="springApplicationContext" class="it.eng.fascicolo.agenda.spring.SpringApplicationContext" />
+	<!-- <bean class="it.eng.fascicolo.agenda.gwt.server.ServerModule" /> -->
+	<bean id="emf"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="eli4uDataSource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<property name="packagesToScan" value="it.eng.fascicolo.commons.jpa.model" />
+	</bean>
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="database" value="ORACLE" />
+		<property name="showSql" value="false" />
+		<property name="generateDdl" value="false" />
+		<property name="databasePlatform" value="org.hibernate.dialect.Oracle10gDialect" />
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="emf" />
+	</bean>
+	<bean id="portalService"
+		class="it.eng.eli4u.agenda.services.portal.LiferayCoboPortalService"
+		scope="singleton">
+	</bean>
+
+
+	<!-- EHCACHE -->
+
+	<bean id="ehcache"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml" />
+		<property name="shared" value="false" />
+	</bean>
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehcache" />
+	</bean>
+
+
+	<!-- BEAN per la CACHE -->
+	<bean id="cachedFrontPage"
+		class="it.eng.fascicolo.agenda.portlet.cache.CachedAgendaFrontPage" />
+
+
+	<tx:annotation-driven />
+	<!-- DAO's -->
+	<bean id="agendaDAO" class="it.eng.fascicolo.agenda.dao.jpa.AgendaDAOImpl" />
+	<bean id="utenteDAO" class="it.eng.fascicolo.agenda.dao.jpa.FceUtenteDAOImpl" />
+
+	<!-- CONFIGURAZIONI DIPENDENTI DALL'ESECUZIONE IN CONTAINER. -->
+	<beans profile="mock">
+		<!-- 172.26.12.8 PRD03_svil_11.INT.COMUNE.BOLOGNA.IT (rete cobo) 10.83.12.8 
+			PRD03_svil_11.INT.COMUNE.BOLOGNA.IT (rete vpn eng) -->
+		<bean id="eli4uDataSource"
+			class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+			p:driverClassName="oracle.jdbc.OracleDriver"
+			p:url="*"
+			p:username="*" p:password="*" />
+
+	</beans>
+
+	<beans profile="container">
+
+		<!-- configurazioni DB containerBased -->
+		<jee:jndi-lookup id="eli4uDataSource" jndi-name="jdbc/Eli4u"
+			expected-type="javax.sql.DataSource" />
+
+
+
+	</beans>
+
+
+
+</beans>

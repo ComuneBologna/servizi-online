@@ -1,0 +1,31 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+	monitoring="autodetect" dynamicConfig="true">
+
+	<diskStore path="java.io.tmpdir/ehcache/cms" />
+	
+	<cache name="cmsNewsFrontCache" maxEntriesLocalHeap="1000"
+		maxEntriesLocalDisk="10000" eternal="false" diskSpoolBufferSizeMB="10"
+		timeToIdleSeconds="0" timeToLiveSeconds="14400"
+		memoryStoreEvictionPolicy="LFU" transactionalMode="off">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	<cache name="cmsNewsFullCache" maxEntriesLocalHeap="1000"
+		maxEntriesLocalDisk="10000" eternal="false" diskSpoolBufferSizeMB="10"
+		timeToIdleSeconds="0" timeToLiveSeconds="14400"
+		memoryStoreEvictionPolicy="LFU" transactionalMode="off">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	<cache name="cmsServiziCache" maxEntriesLocalHeap="1000"
+		maxEntriesLocalDisk="10000" eternal="false" diskSpoolBufferSizeMB="10"
+		timeToIdleSeconds="0" timeToLiveSeconds="14400"
+		memoryStoreEvictionPolicy="LFU" transactionalMode="off">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	<cache name="cmsTilesCache" maxEntriesLocalHeap="1000"
+		maxEntriesLocalDisk="10000" eternal="false" diskSpoolBufferSizeMB="10"
+		timeToIdleSeconds="0" timeToLiveSeconds="14400"
+		memoryStoreEvictionPolicy="LFU" transactionalMode="off">
+		<persistence strategy="localTempSwap" />
+	</cache>
+</ehcache>

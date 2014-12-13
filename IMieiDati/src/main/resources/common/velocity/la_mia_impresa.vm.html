@@ -1,0 +1,167 @@
+
+    <div class="panel-group collapse-second" id="accordion-impresa">
+
+#if ("$!fault" != "")
+	<fieldset class="fieldset-dati alert alert-danger">
+	    <legend><br>$errore_caricamento_servizio	</br></legend>
+	    <div>$errore_codice : <b>$fault.code</b></div> 
+	    <div>$errore_descrizione : <b>$fault.description</b></div> 
+	</fieldset>
+#{else}
+	#foreach( $impresa in $impreseList )
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion-impresa" href="#accordion-impresa-$impresa.index" class="">
+						$impresa.denominazione
+						<span class="sr-only">Visualizza contenuto</span>
+						<span class="glyphicon glyphicon-chevron-down"></span>
+						<span class="glyphicon glyphicon-chevron-up"></span>
+					</a>
+				</h4>
+			</div>
+			
+		    <div style="" id="accordion-impresa-$impresa.index" class="panel-collapse collapse in">
+		        <div class="panel-body impresa-body">
+		            <!-- contrassegno -->
+				    #if( "$!impresa.data_iscrizione" != "" )
+				    <p>$impresa_data_iscrizione: <strong>$impresa.data_iscrizione</strong></p>
+		            #end
+				    #if( "$!impresa.codice_fiscale" != "" )
+				    <p>$impresa_codice_fiscale: <strong>$impresa.codice_fiscale</strong></p>
+		            #end
+				    #if( "$!impresa.numero_iscrizione_ri" != "" )
+				    <p>$impresa_numero_iscrizione_ri: <strong>$impresa.numero_iscrizione_ri</strong></p>
+		            #end
+		            
+		            #foreach( $sede in $impresa.sediList )
+		            <div class="panel-heading2">
+		                <h4 class="panel-title">
+		                    <a data-toggle="collapse" data-parent="#accordion-impresa-$impresa.index" href="#accordion-impresa-$impresa.index$sede.index" class="collapsed">
+		                        $sede.nome:
+		                        #if( "$!sede.indirizzo" != "" )
+		                        <small> $sede.indirizzo</small>
+		                        #end
+		                        <span class="sr-only">Visualizza contenuto</span>
+		                        <span class="glyphicon glyphicon-chevron-down"></span>
+		                        <span class="glyphicon glyphicon-chevron-up"></span>
+		                    </a>
+		                </h4>
+		            </div>
+                    
+                    
+	                <div style="height: 0px;" id="accordion-impresa-$impresa.index$sede.index" class="panel-collapse collapse">
+	                    <div class="panel-body impresa-body impresa-accordion-2">
+							<dl class="field-collection col-sm-6 row left-block">
+    	                        #if( "$!sede.descrizione_attivita" != "" )
+							    <p>$sede_descrizione_attivita: <strong>$sede.descrizione_attivita</strong></p>
+							    #end
+	                            #if( "$!sede.telefono" != "" )
+							    <p>$sede_telefono: <strong>$sede.telefono</strong></p>
+	                            #end
+	                            
+	                            #if( "$!sede.stato_attivita" != "" )
+							    <p>$sede_stato_attivita: <strong>$sede.stato_attivita</strong></p>
+	                            #end
+	                            #if( "$!sede.data_costituzione" != "" )
+							    <p>$sede_data_costituzione: <strong>$sede.data_costituzione</strong></p>
+	                            #end
+	                            #if( "$!sede.data_cessazione" != "" )
+							    <p>$sede_data_cessazione: <strong>$sede.data_cessazione</strong></p>
+	                            #end
+	                            <p>
+	                               #if( "$!sede.categoria" != "" )
+	                               $sede_categoria: <strong>$sede.categoria</strong>
+	                               #end 
+	                               #if( "$!sede.pct_possesso" != "" )
+	                               $sede_pct_possesso: <strong>$sede.pct_possesso</strong>
+	                               #end
+	                            </p>
+                                #if( "$!sede.rendita_catastale" != "" )
+							    <p>$sede_rendita_catastale: <strong>$sede.rendita_catastale</strong></p>
+	                            #end
+	                            #if( "$!sede.superficie" != "" )
+	                            <p>$sede_superficie: <strong>$sede.superficie</strong></p>
+	                            #end
+	                            #if( "$!sede.data_inizio_residenza" != "" )
+	                            <p>$sede_data_inizio_residenza: <strong>$sede.data_inizio_residenza</strong></p>
+	                            #end
+	                            
+	                        </dl>
+	                        
+					
+							#if (($sede.dichiarazioniList && $sede.dichiarazioniList.size() > 0) ||
+					                     ($sede.utenzeGasList && $sede.utenzeGasList.size() > 0) ||
+							     ($sede.utenzeElettricheList && $sede.utenzeElettricheList.size() > 0) ||
+							     ($sede.locazioniList && $sede.locazioniList.size() > 0) ||
+							     ($sede.procedimentiEdiliziList && $sede.procedimentiEdiliziList.size() > 0))
+					      <form action="" method="post">
+					        <dl class="field-collection col-sm-6 row right-block">
+					          <div> <!-- class="col-sm-6 colonna2"> -->
+					            #if( $sede.dichiarazioniList && $sede.dichiarazioniList.size() > 0 )
+					            <label for="dichiarazioni">$sede_dichiarazioni_presentate:</label>
+					            <select name="dichiarazioni" id="dichiarazioni">
+					              #foreach( $dichiarazione in $sede.dichiarazioniList )
+					              <option value="">$dichiarazione.descrizione</option>
+					              #end
+					            </select>
+					            <div class="end-block"/>
+					            #end
+					
+					          #if( ($sede.utenzeGasList && $sede.utenzeGasList.size() > 0) ||
+						         ($sede.utenzeElettricheList && $sede.utenzeElettricheList.size() > 0))
+					            <label for="utenze">$sede_utenze:</label>
+					            #if( $sede.utenzeGasList && $sede.utenzeGasList.size() > 0 )
+					            <p class="utenze-inner-label"><strong>&nbsp;&nbsp;$sede_gas:&nbsp;</strong>
+					            <select name="gas" id="gas">
+					              #foreach( $utenzaGas in $sede.utenzeGasList )
+					              <option value="">$utenzaGas.descrizione</option>
+					              #end
+					            </select></p>
+					            #end
+					
+					            #if( $sede.utenzeElettricheList && $sede.utenzeElettricheList.size() > 0 )
+					            <p class="utenze-inner-label"><strong>&nbsp;&nbsp;$sede_elettricita:&nbsp;</strong>
+					            <select name="elettricita" id="elettricita">
+					              #foreach( $utenzaElettrica in $sede.utenzeElettricheList )
+					              <option value=""><acronym title="KiloWatt/ora">kWh</acronym> $utenzaElettrica.descrizione</option>
+					              #end
+					            </select></p>
+					            #end
+					            <div class="end-block"/> 
+					          #end
+					
+					            #if( $sede.locazioniList && $sede.locazioniList.size() > 0 )  
+					            <label for="locazioni">$sede_locazioni:</label>
+					            <select name="locazioni" id="locazioni">
+					              #foreach( $locazione in $sede.locazioniList )
+					              <option value="">$locazione.descrizione</option>
+					              #end
+					            </select>
+					            <div class="end-block"/>
+					            #end
+						
+					
+					            #if( $sede.procedimentiEdiliziList && $sede.procedimentiEdiliziList.size() > 0 )
+					            <label for="procedimenti">$sede_procedimenti_edilizi:</label>
+					            <select name="procedimenti" id="procedimenti">
+					              #foreach( $procedimentoEdilizio in $sede.procedimentiEdiliziList )
+					              <option value="">$procedimentoEdilizio.descrizione</option>
+					              #end
+					            </select> 
+					            #end
+					          </div>
+					        </dl>
+					      </form>
+							#end
+
+	                    </div>
+	                </div>
+	                #end
+	 	        </div>
+		    </div>
+		</div>
+	#end
+#end
+    </div>
+

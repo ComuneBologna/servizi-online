@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlet-app
+  xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd"
+  version="1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd
+                      http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd"> 
+  
+  <portlet>
+    <description>I_Miei_Dati_Portlet</description>
+    <portlet-name>I_Miei_Dati_Portlet</portlet-name>
+    <display-name>I_Miei_Dati_Portlet</display-name>
+    
+    <portlet-class>it.eng.eli4u.imieidati.IMieiDati</portlet-class>
+    <expiration-cache>0</expiration-cache>
+    <supports>
+      <mime-type>text/html</mime-type>
+      <portlet-mode>VIEW</portlet-mode>
+      <portlet-mode>EDIT</portlet-mode>
+      <portlet-mode>edit_defaults_compatibility</portlet-mode>
+    </supports>
+    <supported-locale>en</supported-locale>
+    
+    <portlet-info>
+      <title>I_Miei_Dati_Portlet</title>
+      <short-title>I_Miei_Dati_Portlet</short-title>
+      <keywords>miei dati</keywords>
+    </portlet-info>
+    
+    
+      <portlet-preferences>
+        <preference>
+            <name>sectionsToHide</name>
+            <value></value>
+            <read-only>false</read-only>
+        </preference>
+  </portlet-preferences> 
+  </portlet>    
+  
+  <portlet>
+    <description>I_Miei_Dati_Caching_Portlet</description>
+    <portlet-name>I_Miei_Dati_Caching_Portlet</portlet-name>
+    <display-name>I_Miei_Dati_Caching_Portlet</display-name>
+    
+    <portlet-class>it.eng.eli4u.imieidati.IMieiDatiCaching</portlet-class>
+    <expiration-cache>0</expiration-cache>
+    <supports>
+      <mime-type>text/html</mime-type>
+      <portlet-mode>VIEW</portlet-mode>
+      <portlet-mode>EDIT</portlet-mode>
+      <portlet-mode>edit_defaults_compatibility</portlet-mode>
+    </supports>
+    <supported-locale>en</supported-locale>
+    
+    <portlet-info>
+      <title>I_Miei_Dati_Caching_Portlet</title>
+      <short-title>I_Miei_Dati_Caching_Portlet</short-title>
+      <keywords>miei dati caching</keywords>
+    </portlet-info>
+             
+  </portlet>   
+  
+  <portlet>
+    <description>I_Miei_Dati_Portlet_ZTL</description>
+    <portlet-name>I_Miei_Dati_Portlet_ZTL</portlet-name>
+    <display-name>I_Miei_Dati_Portlet_ZTL</display-name>
+    
+    <portlet-class>it.eng.eli4u.imieidati.IMieiDati</portlet-class>
+    <expiration-cache>0</expiration-cache>
+    <supports>
+      <mime-type>text/html</mime-type>
+      <portlet-mode>VIEW</portlet-mode>
+      <portlet-mode>EDIT</portlet-mode>
+      <portlet-mode>edit_defaults_compatibility</portlet-mode>
+    </supports>
+    <supported-locale>en</supported-locale>
+    
+    <portlet-info>
+      <title>I_Miei_Dati_Portlet_ZTL</title>
+      <short-title>I_Miei_Dati_Portlet_ZTL</short-title>
+      <keywords>i miei dati ztl</keywords>
+    </portlet-info>
+    
+     <portlet-preferences>
+        <preference>
+            <name>sectionsToHide</name>
+            <value></value>
+            <read-only>false</read-only>
+        </preference>
+  </portlet-preferences> 
+  </portlet>
+  
+<!--    <portlet>
+    <description>Portlet_I_Miei_Dati_Gestione</description>
+    <portlet-name>I_Miei_Dati_Portlet_Gestione</portlet-name>
+    <display-name>I_Miei_Dati_Portlet_Gestione</display-name>
+    
+    <portlet-class>it.eng.eli4u.imieidati.IMieiDatiGestione</portlet-class>
+    <expiration-cache>0</expiration-cache>
+    <supports>
+      <mime-type>text/html</mime-type>
+      <portlet-mode>VIEW</portlet-mode>
+    </supports>
+    <supported-locale>en</supported-locale>
+    
+    <portlet-info>
+      <title>I_Miei_Dati_Portlet_Gestione</title>
+      <short-title>I_Miei_Dati_Portlet_Gestione</short-title>
+      <keywords>miei dati gestione</keywords>
+    </portlet-info>
+  </portlet> -->
+  
+</portlet-app> 

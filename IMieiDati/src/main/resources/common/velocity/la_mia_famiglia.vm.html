@@ -1,0 +1,107 @@
+
+  <div id="accordion-famiglia">
+#if ("$!fault" != "")
+	<fieldset class="fieldset-dati alert alert-danger">
+	  <legend><br>$errore_caricamento_servizio	</br></legend>
+	  <div>$errore_codice : <b>$fault.code</b></div>
+	  <div>$errore_descrizione : <b>$fault.description</b></div>
+	</fieldset>
+#{else}
+
+
+	<div class="row">
+	
+	  #if( "$!intestatario.nome" != "" )
+	  <div class="col-sm-6">
+		<div class="row">
+		  <div class="col-xs-3 col-sm-4 img-container-large">
+			<div class="picture">
+<!--			  <a href="#" title="cambia l'immagine del tuo profilo"> -->
+				#if("$intestatario.sesso" == "M")
+				<i class="panel-title fa fa-male picture-large"></i>
+<!--				<img src="./img/inline/man.jpg" alt="$intestatario.nome" /> -->
+				#else
+				<i class="panel-title fa fa-female picture-large"></i>
+<!--				<img src="./img/inline/woman.jpg" alt="$intestatario.nome" /> -->
+				#end
+<!--			  </a> -->
+			</div>
+		  </div>
+		  <div class="col-xs-9 col-sm-8">
+			<h4 class="family-header title">
+			  $intestatario.nome
+			  <small>$intestatario.relazione_parentale</small>	
+			</h4>
+			<dl class="field-collection">
+			  #if ("$intestatario.sesso" == "M")
+			  <dt>$famiglia_nato_a</dt>
+			  #else
+			  <dt>$famiglia_nata_a</dt>
+			  #end
+			  <dd>$intestatario.nato_a</dd>
+			  <dt>$famiglia_residente_in</dt>
+			  <dd>$intestatario.residente_in</dd>
+			  #if( "$!intestatario.proveniente_da" != "" )
+			  <dt>$famiglia_proveniente_da</dt>
+			  <dd>$intestatario.proveniente_da</dd>
+			  #end
+			  <dt>$famiglia_codice_fiscale</dt>
+			  <dd>$intestatario.codice_fiscale</dd>
+			  #if( "$!intestatario.partita_iva" != "" )
+			  <dt>$famiglia_partita_IVA</dt>
+			  <dd>$intestatario.partita_iva</dd>
+			  #end
+			</dl>
+		  </div>
+		</div>
+	  </div>
+	  #end
+	
+	  <div class="col-sm-6">
+		<div class="row">
+	
+		  #foreach( $familiare in $familiariList )
+			#if ("$familiare.index_persona" == "1")
+		  <div class="familiare" style="float: left;">
+		  	#{else}
+		  <div class="familiare" style="float: left;">
+		  	#end
+			<div class="col-xs-3 img-container-small" style="margin-left: 6px;">
+			  <div class="picture">
+<!--			  <a href="#" title="cambia l'immagine del tuo profilo"> -->
+				  #if("$familiare.sesso" == "M")
+				  <i class="panel-title fa fa-male picture-small"></i>
+<!--				  <img src="/img/inline/man.jpg" alt="$familiare.nome" /> -->
+				  #else
+				  <i class="panel-title fa fa-female picture-small"></i>
+<!--				  <img src="/img/inline/woman.jpg" alt="$familiare.nome" /> -->
+				  #end
+<!--			  </a> -->
+			  </div>
+			</div>
+			<div class="col-xs-9">
+			  <h4 class="family-header title">
+				$familiare.nome
+				<small>$familiare.relazione_parentale</small>
+				</h4>
+				<dl class="field-collection">
+				#if ("$familiare.sesso" == "M")
+				<dt>$famiglia_nato_a</dt>
+				#else
+				<dt>$famiglia_nata_a</dt>
+				#end
+				<dd>$familiare.nato_a</dd>
+				<dt>$famiglia_codice_fiscale</dt>
+				<dd>$familiare.codice_fiscale</dd>
+			  </dl>
+			</div>
+		  </div>
+		  #end
+		
+	  </div>
+	</div>
+
+
+
+#end
+  </div>

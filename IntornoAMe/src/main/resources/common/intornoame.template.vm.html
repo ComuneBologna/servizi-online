@@ -1,0 +1,100 @@
+<div class="main-container container">
+	<div class="col-sm-4 sidebar hidden-xs">
+
+		<div class="col-xs-12">
+			<div class="panel">
+
+				<div class="panel-heading">
+					<h2 class="panel-title portlet-title panel-title-small">Tipologia
+						di Luogo</h2>
+				</div>
+				<!-- /panel-heading -->
+				<div class="panel-body categories">
+					<div class="portlet-content-container">
+						<form method="post" action="">
+							<ul id="listaCheckboxCategorie1">
+								#foreach( $categoria in $elencoCategorie )
+								<li class="col-xs-12"><div class="checkbox">
+										<input type="checkbox" name="categoria-$!categoria.id"
+											value="" id="categoria-$!categoria.id" checked /><label
+											for="$!categoria.descrizione"
+											class="categoria-$!categoria.id">$!categoria.descrizione</label>
+									</div></li> #end
+							</ul>
+						</form>
+					</div>
+				</div>
+
+			</div>
+			<!-- panel -->
+		</div>
+	</div>
+
+	<div class="col-sm-8">
+
+		<div class="col-xs-12">
+			<div class="panel">
+				<div class="panel-heading">
+					<h2 class="panel-title portlet-title">$!titoloPortlet</h2>
+				</div>
+				<!-- /panel-heading -->
+				<div class="panel-body">
+					<span>$!testoPortlet</span>
+				</div>
+				<!-- /panel-body -->
+				<div class="panel-body categories visible-xs">
+					<a data-toggle="collapse" data-parent="#accordion-1"
+						href="#collapse-1" title="Visualizza contenuto" class="collapsed">
+						<span class="">Filtra per tipologia di luogo</span> <span
+						class="glyphicon glyphicon-chevron-down"></span> <span
+						class="glyphicon glyphicon-chevron-up"></span>
+					</a>
+					<div class="panel-collapse collapse" id="collapse-1">
+						<div class="panel-body">
+							<div class="portlet-content-container">
+								<form id="formSearch" method="post" action="" onsubmit="return false;">
+									<ul id="listaCheckboxCategorie2">
+										#foreach( $categoria in $elencoCategorie )
+										<li class="col-xs-12"><div class="checkbox">
+												<input type="checkbox" name="categoria-$!categoria.id"
+													value="" id="categoria-$!categoria.id" checked /><label
+													for="categoria-$!categoria.id"
+													class="categoria-$!categoria.id">$!categoria.descrizione</label>
+											</div></li> #end
+									</ul>
+								</form>
+							</div>
+							<!-- /portlet-content-container -->
+						</div>
+						<!-- /panel-body -->
+					</div>
+					<!-- /panel-collapse -->
+				</div>
+
+				<div class="panel-body map-panel">
+					<div class="embed-responsive embed-responsive-16by9">
+						<div id="map" class="embed-responsive-item"></div>
+					</div>
+					<div>
+						<form method="post" action="" onsubmit="return false;">
+							<div class="search-box">
+								<label for="esplora-search">Ricerca indirizzo nei
+									dintorni:</label> <input name="esplora-search" id="esplora-search"
+									value="" type="text">
+							</div>
+						</form>
+					</div>
+					<div class="alert" id="msgErrore" style="display: none"></div>
+					<div class="alert-success" id="msgInfo" style="display: none"></div>
+					<div class="alert-danger" id="msgDanger" style="display: none"></div>
+					<div class="poi">
+						<div class="portlet-content-container">
+							<div class="portlet-body" id="dettaglio-poi"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- panel -->
+		</div>
+	</div>
+</div>

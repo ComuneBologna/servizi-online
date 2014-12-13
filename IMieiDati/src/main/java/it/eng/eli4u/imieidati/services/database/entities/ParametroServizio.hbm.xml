@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 31-lug-2014 11.28.28 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="it.eng.eli4u.imieidati.services.database.entities.ParametroServizio" table="parametro_servizio">
+        <id name="idParam" type="double">
+            <column name="ID_PARAM" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="sezione" class="it.eng.eli4u.imieidati.services.database.entities.Sezione" fetch="select">
+            <column name="ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="codice" type="string">
+            <column name="CODICE" length="100" not-null="true" />
+        </property>
+        <property name="valore" type="string">
+            <column name="VALORE" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

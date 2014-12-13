@@ -1,0 +1,7 @@
+.pre-header,
+.wrapper-region-header,
+.field-name-field-video,
+#footer-wrapper,
+#twitter-widget-0 {display: none;}
+#header #logo {width: auto !important; height: 30px !important;}
+.print {display: block !important;}

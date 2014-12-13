@@ -1,0 +1,114 @@
+
+  <div id="accordion-residenza">
+
+#if ("$!fault" != "")
+	<fieldset class="fieldset-dati alert alert-danger">
+	  <legend><br>$errore_caricamento_servizio	</br></legend>
+	  <div>$errore_codice : <b>$fault.code</b></div>
+	  <div>$errore_descrizione : <b>$fault.description</b></div>
+	</fieldset>
+#{else}
+
+	#if( "$!immobile.indirizzo" != "" )
+	<h4 class="title">$immobile.indirizzo - Bologna</h4>
+	#end
+	
+	#if (("$!immobile.categoria" != "") ||
+	     ("$!immobile.pct_possesso" != "") ||
+	     ("$!immobile.superficie" != "") ||
+	     ("$!immobile.rendita_catastale" != "") ||
+	     ( "$!immobile.inizio_residenza" != ""))
+	<dl class="field-collection col-sm-6 row left-block">
+	  #if( "$!immobile.categoria" != "" )
+	  <dt>$immobile_categoria</dt>
+	  <dd>$immobile.categoria</dd>
+	  #end
+	  #if( "$!immobile.pct_possesso" != "" )
+	  <dt>$immobile_possesso</dt>
+	  <dd>$immobile.pct_possesso</dd>
+	  #end
+	  
+	  #if( "$!immobile.superficie" != "" )
+	  <dt>$immobile_superficie</dt>
+	  <dd>$immobile.superficie</dd>
+	  #end
+	  
+	  #if( "$!immobile.rendita_catastale" != "" )
+	  <dt>$immobile_rendita</dt>
+	  <dd>$immobile.rendita_catastale</dd>
+	  #end
+	  
+	  #if( "$!immobile.inizio_residenza" != "")
+	  <dt>$immobile_inizio_residenza</dt>
+	  <dd>$immobile.inizio_residenza</dd>
+	  #end
+	</dl>
+	#end
+	
+	#if (($immobile.dichiarazioniList && $immobile.dichiarazioniList.size() > 0) ||
+		 ($immobile.utenzeGasList && $immobile.utenzeGasList.size() > 0) ||
+	     ($immobile.utenzeElettricheList && $immobile.utenzeElettricheList.size() > 0) ||
+	     ($immobile.locazioniList && $immobile.locazioniList.size() > 0) ||
+	     ($immobile.procedimentiEdiliziList && $immobile.procedimentiEdiliziList.size() > 0))
+      <form action="" method="post">
+        <dl class="field-collection col-sm-6 row right-block">
+          <div> <!-- class="col-sm-6 colonna2"> -->
+            #if( $immobile.dichiarazioniList && $immobile.dichiarazioniList.size() > 0 )
+            <label for="dichiarazioni">$immobile_dichiarazioni_presentate:</label>
+            <select name="dichiarazioni" id="dichiarazioni">
+              #foreach( $dichiarazione in $immobile.dichiarazioniList )
+              <option value="">$dichiarazione.descrizione</option>
+              #end
+            </select>
+            <div class="end-block"/>
+            #end
+
+          #if( ($immobile.utenzeGasList && $immobile.utenzeGasList.size() > 0) ||
+	       ($immobile.utenzeElettricheList && $immobile.utenzeElettricheList.size() > 0))
+            <label for="utenze">$immobile_utenze:</label>
+            #if( $immobile.utenzeGasList && $immobile.utenzeGasList.size() > 0 )
+            <p class="utenze-inner-label"><strong>&nbsp;&nbsp;$immobile_gas:&nbsp;</strong>
+            <select name="gas" id="gas">
+              #foreach( $utenzaGas in $immobile.utenzeGasList )
+              <option value="">$utenzaGas.descrizione</option>
+              #end
+            </select></p>
+            #end
+
+            #if( $immobile.utenzeElettricheList && $immobile.utenzeElettricheList.size() > 0 )
+            <p class=utenze-inner-label"><strong>&nbsp;&nbsp;$immobile_elettricita:&nbsp;</strong>
+            <select name="elettricita" id="elettricita">
+              #foreach( $utenzaElettrica in $immobile.utenzeElettricheList )
+              <option value=""><acronym title="KiloWatt/ora">kWh</acronym> $utenzaElettrica.descrizione</option>
+              #end
+            </select></p>
+            #end
+            <div class="end-block"/> 
+          #end
+	  
+          
+            #if( $immobile.locazioniList && $immobile.locazioniList.size() > 0 )  
+            <label for="locazioni">$immobile_locazioni:</label>
+            <select name="locazioni" id="locazioni">
+              #foreach( $locazione in $immobile.locazioniList )
+              <option value="">$locazione.descrizione</option>
+              #end
+            </select>
+            <div class="end-block"/>
+            #end
+	
+
+            #if( $immobile.procedimentiEdiliziList && $immobile.procedimentiEdiliziList.size() > 0 )
+            <label for="procedimenti">$immobile_procedimenti_edilizi:</label>
+            <select name="procedimenti" id="procedimenti">
+              #foreach( $procedimentoEdilizio in $immobile.procedimentiEdiliziList )
+              <option value="">$procedimentoEdilizio.descrizione</option>
+              #end
+            </select> 
+            #end
+          </div>
+        </dl>
+      </form>
+	#end
+#end
+  </div>

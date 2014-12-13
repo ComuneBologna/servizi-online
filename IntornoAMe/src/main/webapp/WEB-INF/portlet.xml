@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
+	<portlet>
+		<portlet-name>IntornoAMe</portlet-name>
+		<display-name>IntornoAMe Application</display-name>
+		<portlet-class>it.eng.fascicolo.intornoame.portlet.IntornoAMePortlet</portlet-class>
+		<init-param>
+			<description>Raggio di chilometri oltre iil quale la mappa si posiziona al centro Citta'</description>
+			<name>distanzaKmDalCentroCitta</name>
+			<value>${distanzaKmDalCentroCitta}</value>
+		</init-param>
+		<init-param>
+			<description>URL del servizio ACSOR</description>
+			<name>urlAcsorService</name>
+			<value>${urlAcsorService}</value>
+		</init-param>
+		<init-param>
+			<description>URL ricerca luogo</description>
+			<name>urlRicercaLuogo</name>
+			<value>${urlRicercaLuogo}</value>
+		</init-param>
+		<init-param>
+			<description>Coordinate poligono ricerca luogo</description>
+			<name>coordinatePoligonoRicerca</name>
+			<value>${coordinatePoligonoRicerca}</value>
+		</init-param>
+		<init-param>
+			<description>URL per i contenuti del CMS Drupal (tiles) per utenti loggati</description>
+			<name>urlTilesCmsDrupalLogged</name>
+			<value>${urlTilesCmsDrupalLogged}</value>
+		</init-param>
+		<init-param>
+			<description>URL per i contenuti del CMS Drupal (tiles) per utenti guest</description>
+			<name>urlTilesCmsDrupalGuest</name>
+			<value>${urlTilesCmsDrupalGuest}</value>
+		</init-param>
+		<init-param>
+			<description>Nome del servizio a partire dall'URL del servizio ACSOR</description>
+			<name>acsorService</name>
+			<value>${acsorService}</value>
+		</init-param>
+		<init-param>
+			<description>URL (o nome file) dell'icona di default per i KML in caso di assenza di stili</description>
+			<name>defaultIconMap</name>
+			<value>${defaultIconMap}</value>
+		</init-param>
+		<init-param>
+			<description>Longitudine del centro della citta'</description>
+			<name>longitudineCentroCitta</name>
+			<value>${longitudineCentroCitta}</value>
+		</init-param>
+		<init-param>
+			<description>Latitudine del centro della citta'</description>
+			<name>latitudineCentroCitta</name>
+			<value>${latitudineCentroCitta}</value>
+		</init-param>
+		<init-param>
+			<description>Username per i servizi ACSOR</description>
+			<name>usernameAcsor</name>
+			<value>${usernameAcsor}</value>
+		</init-param>
+		<init-param>
+			<description>password per i servizi ACSOR</description>
+			<name>passwordAcsor</name>
+			<value>${passwordAcsor}</value>
+		</init-param>
+		
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>IntornoAMe Application</title>
+			<short-title>IntornoAMe Application</short-title>
+			<keywords>IntornoAMe Application</keywords>
+		</portlet-info>
+	</portlet>
+	<portlet>
+		<portlet-name>IntornoAMeFrontPage</portlet-name>
+		<display-name>IntornoAMeFrontPage Application</display-name>
+		<portlet-class>it.eng.fascicolo.intornoame.portlet.IntornoAMeFrontPagePortlet</portlet-class>
+		<init-param>
+			<description>Raggio di chilometri oltre i uali la mappa si posiziona al centro di Bologna</description>
+			<name>distanzaKmDalCentroDiBologna</name>
+			<value>${distanzaKmDalCentroDiBologna}</value>
+		</init-param>
+		<init-param>
+			<description>URL (o nome file) dell'icona di default per i KML in caso di assenza di stili</description>
+			<name>defaultIconMap</name>
+			<value>${defaultIconMap}</value>
+		</init-param>
+		<init-param>
+			<description>Longitudine del centro della citta'</description>
+			<name>longitudineCentroCitta</name>
+			<value>${longitudineCentroCitta}</value>
+		</init-param>
+		<init-param>
+			<description>Latitudine del centro della citta'</description>
+			<name>latitudineCentroCitta</name>
+			<value>${latitudineCentroCitta}</value>
+		</init-param>
+		<init-param>
+			<description>URL ricerca luogo</description>
+			<name>urlRicercaLuogo</name>
+			<value>${urlRicercaLuogo}</value>
+		</init-param>
+		<init-param>
+			<description>URL per i contenuti del CMS Drupal (tiles) per utenti loggati</description>
+			<name>urlTilesCmsDrupalLogged</name>
+			<value>${urlTilesCmsDrupalLogged}</value>
+		</init-param>
+		<init-param>
+			<description>URL per i contenuti del CMS Drupal (tiles) per utenti guest</description>
+			<name>urlTilesCmsDrupalGuest</name>
+			<value>${urlTilesCmsDrupalGuest}</value>
+		</init-param>
+		<init-param>
+			<description>URL (nome pagina) della portlet di dettaglio (fullPageUrl)</description>
+			<name>fullPageUrl</name>
+			<value>${fullPageUrl}</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>IntornoAMeFrontPage Application</title>
+			<short-title>IntornoAMeFrontPage Application</short-title>
+			<keywords>IntornoAMeFrontPage Application</keywords>
+		</portlet-info>
+	</portlet>	
+</portlet-app>

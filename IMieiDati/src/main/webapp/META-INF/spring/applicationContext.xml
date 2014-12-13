@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd  
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd   
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd   
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+	">
+
+	<util:properties id="portlet" location="classpath:portlet.properties" /> <!-- Caricamento properties da file. -->
+	<context:annotation-config />
+	<cache:annotation-driven/><!-- Rimuovere per spegnere caching -->
+	<bean id="springApplicationContext"
+		class="it.eng.eli4u.application.context.SpringApplicationContext" />
+	<bean id="dettaglioSezione" class="it.eng.eli4u.service.command.DettaglioSezioneCommand" />
+	<bean id="gestioneLocalizzazioni"
+		class="it.eng.eli4u.service.command.GestioneLocalizzazioniCommand" />
+	<bean id="gestioneSezioni" class="it.eng.eli4u.service.command.GestioneSezioniCommand" />
+	<bean id="listaLocalizzazioni" class="it.eng.eli4u.service.command.ListaLocalizzazioniCommand" />
+	<bean id="listaSezioni" class="it.eng.eli4u.service.command.ListaSezioniCommand" />
+	<bean id="listaSezioniValide" class="it.eng.eli4u.service.command.ListaSezioniValideCommand" />
+	<bean id="cacheSezione" class="it.eng.eli4u.service.command.CacheSezioneCommand" />
+	<bean id="contextListener"
+		class="it.eng.eli4u.application.context.ImieiDatiContextListener" />
+	<bean id="eli4ucacheInvoker"
+		class="it.eng.eli4u.imieidati.services.eli4u.Eli4uCachedInvokerServiceImpl" />
+
+	<!-- EHCACHE -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehcache" />
+	</bean>
+	<bean id="ehcache"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml" />
+		<property name="shared" value="false" />
+	</bean>
+	<!-- CONFIGURAZIONI DIPENDENTI DALL'ESECUZIONE IN CONTAINER. -->
+	<beans profile="mock">
+	</beans>
+<!-- Profilo per import bean dipendenti dal portale Liferay -->
+	<beans profile="liferay">
+		<bean id="portalService"
+			class="it.eng.eli4u.imieidati.services.portal.LiferayPortalService"
+			scope="singleton" />
+	</beans>
+<!-- Profilo per import bean dipendenti dal deploy in modalità Property -->
+	<beans profile="propertyBased">
+		<bean id="databaseService"
+			class="it.eng.eli4u.imieidati.services.database.PropertyDatabaseServiceImpl"
+			scope="singleton" />
+	</beans>
+
+	<beans profile="DBbased">
+		<bean id="databaseService"
+			class="it.eng.eli4u.imieidati.services.database.HibernateDatabaseServiceImpl"
+			scope="singleton" />
+	</beans>
+
+</beans>
