@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<schema-selection match-schema="FCE_DBA" />
+	
+	<type-mapping>
+		<sql-type jdbc-type="BLOB" hibernate-type="byte[]" />
+	</type-mapping>
+	
+	<table-filter match-name="FCE_UTENTE" ></table-filter>
+    <table-filter match-name="FCE_AGENDA" ></table-filter> 
+	<table-filter match-name="FCE_AGENDA_CATEGORIA" ></table-filter>
+	<table-filter match-name="FCE_AGENDA_UTENTE" ></table-filter>
+	<table-filter match-name="FCE_AGENDA_SORGENTI" >
+	</table-filter>
+	<table-filter match-name="FCE_INTORNOAME_CATEGORIA"
+		>
+	</table-filter>
+	<table-filter match-name="FCE_INTORNOAME_KML"
+		>
+	</table-filter>
+	<table-filter match-name="FCE_INTORNOAME_KML_CAT"
+		>
+	</table-filter>
+	<table-filter match-name="FCE_INTORNOAME_KML_UTENTE"
+		>
+	</table-filter>
+	<table-filter match-name="FCE_TIPO_ACCOUNT" ></table-filter>
+
+	<table-filter match-name="FCE_PROFESSIONE" >
+	</table-filter>
+	<table-filter match-name="FCE_PROVINCE" >
+	</table-filter>
+	<table-filter match-name="FCE_COMUNI" >
+	</table-filter>
+	<table-filter match-name="FCE_INTERESSE" >
+	</table-filter>
+	<table-filter match-name="FCE_UTENTE_INTERESSE">
+	</table-filter>
+	<table-filter match-name="FCE_STATO_NEWSLETTER">
+	</table-filter>
+	<!-- TABLE overrides -->
+	<table name="FCE_UTENTE">
+		<primary-key>
+			<generator class="sequence">
+				<param name="sequence">SEQ_FCE_UTENTE</param>
+			</generator>
+			<key-column name="IDUTENTE" />
+		</primary-key>
+	</table>
+	
+	<table name="FCE_AGENDA">
+		<column name="DATAINIZIO" jdbc-type="DATE" type="java.sql.Timestamp" />
+		<column name="DATAFINE" jdbc-type="DATE" type="java.sql.Timestamp" />
+		<column name="DATACREAZIONE" jdbc-type="DATE" type="java.sql.Timestamp" />
+	</table>
+	
+	
+</hibernate-reverse-engineering>
